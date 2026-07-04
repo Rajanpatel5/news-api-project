@@ -1,0 +1,166 @@
+<!-- Navbar -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News App</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-dark bg-dark shadow">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-3" href="#">
+            📰 NEWS APP
+        </a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <!-- Search Section -->
+
+    <div class="row mb-4">
+
+        <div class="col-md-5">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text"
+                           name="country"
+                           class="form-control"
+                           placeholder="Search Country">
+
+                    <button class="btn btn-primary">
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-5">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text"
+                           name="category"
+                           class="form-control"
+                           placeholder="Search Category">
+
+                    <button class="btn btn-success">
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Category Buttons -->
+
+    <div class="text-center mb-4">
+
+        <a href="{% url 'home' %}?category=technology"
+           class="btn btn-secondary m-1">
+            Technology
+        </a>
+
+        <a href="{% url 'home' %}?category=health"
+           class="btn btn-success m-1">
+            Health
+        </a>
+
+        <a href="{% url 'home' %}?category=entertainment"
+           class="btn btn-danger m-1">
+            Entertainment
+        </a>
+
+        <a href="{% url 'home' %}?category=sports"
+           class="btn btn-dark m-1">
+            Sports
+        </a>
+
+        <a href="{% url 'home' %}?category=science"
+           class="btn btn-primary m-1">
+            Science
+        </a>
+
+        <a href="{% url 'home' %}?category=business"
+           class="btn btn-info m-1">
+            Business
+        </a>
+
+        <a href="{% url 'home' %}?category=politics"
+           class="btn btn-warning m-1">
+            Politics
+        </a>
+
+        <a href="{% url 'home' %}?category=world"
+           class="btn btn-primary m-1">
+            World
+        </a>
+        
+
+    </div>
+
+    <!-- News Cards -->
+
+    <div class="row">
+
+        {% for i in articles %}
+
+        <div class="col-md-6 col-lg-4 mb-4">
+
+            <div class="card h-100 shadow">
+
+                <img src="{{ i.image_url }}"
+                     class="card-img-top"
+                     style="height:220px;object-fit:cover;">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">
+                        {{ i.title }}
+                    </h5>
+
+                    <p class="text-muted">
+                        {{ i.creator }}
+                    </p>
+
+                    <p class="card-text">
+                        {{ i.description|truncatewords:20 }}
+                    </p>
+
+                </div>
+
+                <div class="card-footer bg-white">
+
+                    <small class="text-muted">
+                        {{ i.pubDate }}
+                    </small>
+
+                    <a href="{{ i.source_url }}"
+                       target="_blank"
+                       class="btn btn-primary w-100 mt-2">
+
+                        Read Full News
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
+```
